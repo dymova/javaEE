@@ -17,7 +17,7 @@ public class Tag {
     private String v;
 
     @Column(name = "node_id")
-    private BigInteger node_id;
+    private BigInteger nodeId;
 
     public Tag(String k, String v) {
         this.k = k;
@@ -25,6 +25,10 @@ public class Tag {
     }
 
     public Tag() {
+    }
+
+    public BigInteger getNodeId() {
+        return nodeId;
     }
 
     public String getK() {

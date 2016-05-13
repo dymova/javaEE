@@ -31,7 +31,7 @@
 			<xs:sequence>
 				<xs:element ref="tags" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:sequence>
-			<xs:attribute name="nodeId" type="xs:unsignedLong"/>
+			<xs:attribute name="originalId" type="xs:unsignedLong"/>
 			<xs:attribute name="lat" type="xs:double"/>
 			<xs:attribute name="lon" type="xs:double"/>
 			<xs:attribute name="user" type="xs:string"/>
@@ -49,7 +49,7 @@
 				<xs:element ref="nd" minOccurs="2" maxOccurs="2000"/> <!-- /api/capabilities may change -->
 				<xs:element ref="tags" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:sequence>
-			<xs:attribute name="nodeId" type="xs:unsignedLong"/>
+			<xs:attribute name="originalId" type="xs:unsignedLong"/>
 			<xs:attribute name="user" type="xs:string"/>
 			<xs:attribute name="uid" type="xs:unsignedLong"/>
 			<xs:attribute name="visible" type="xs:boolean"/>
@@ -78,7 +78,7 @@
 				<xs:element ref="member" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="tags" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:sequence>
-			<xs:attribute name="nodeId" type="xs:unsignedLong"/>
+			<xs:attribute name="originalId" type="xs:unsignedLong"/>
 			<xs:attribute name="user" type="xs:string"/>
 			<xs:attribute name="uid" type="xs:unsignedLong"/>
 			<xs:attribute name="visible" type="xs:boolean"/>

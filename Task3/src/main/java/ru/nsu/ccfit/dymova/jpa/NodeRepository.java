@@ -8,8 +8,10 @@ import java.math.BigInteger;
 import java.util.List;
 
 
-@Repository
 public interface NodeRepository extends JpaRepository<Node, BigInteger> {
 
-    List<Node> findByNodeId(BigInteger nodeId);
+    List<Node> findByOriginalId(BigInteger originalId);
+
+    Node findById(BigInteger id);
+
 }

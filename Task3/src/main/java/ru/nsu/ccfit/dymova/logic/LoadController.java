@@ -13,6 +13,7 @@ import ru.nsu.ccfit.dymova.services.NodeReader;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.stream.XMLStreamException;
+import java.io.IOException;
 
 @Component
 public class LoadController {
@@ -24,11 +25,10 @@ public class LoadController {
     @Autowired
     private NodeRepository nodeRepository;
 
-    public void loadToDatabase() throws JAXBException, XMLStreamException {
-        log.info("start load to db");
-        Node node;
-        node = nodeReader.getNextNode();
-        nodeRepository.save(node);
+    public void loadToDatabase() throws JAXBException, XMLStreamException, IOException {
+        Node node = nodeReader.getNextNode();
+//        nodeRepository.save(node);
+        nodeReader.close();
     }
 }
 

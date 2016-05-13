@@ -15,7 +15,6 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableJpaRepositories(basePackages = "ru.nsu.ccfit.dymova")
-//@EnableTransactionManagement
 public class JpaConfiguration {
     @Bean
     LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {

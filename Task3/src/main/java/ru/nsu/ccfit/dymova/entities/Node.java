@@ -14,9 +14,8 @@ public class Node {
     private BigInteger id;
 
     @Column(name = "node_id")
-    private BigInteger nodeId;
+    private BigInteger originalId;
 
-//    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "node_id")
     private List<Tag> tags;
@@ -42,14 +41,13 @@ public class Node {
     @Column(name = "node_changeset")
     private BigInteger changeset;
 
-//    @Column(name = "node_timestamp")
     @Column(name = "node_timestamp", columnDefinition = "timestamp with time zone")
     private Timestamp timestamp;
 
-    public Node(List<Tag> tags, BigInteger nodeId, Double lat, Double lon, String user, BigInteger uid, Boolean visible,
+    public Node(List<Tag> tags, BigInteger originalId, Double lat, Double lon, String user, BigInteger uid, Boolean visible,
                 BigInteger version, BigInteger changeset, Timestamp timestamp) {
         this.tags = tags;
-        this.nodeId = nodeId;
+        this.originalId = originalId;
         this.lat = lat;
         this.lon = lon;
         this.user = user;
@@ -63,12 +61,16 @@ public class Node {
     public Node() {
     }
 
+    public BigInteger getId() {
+        return id;
+    }
+
     public List<Tag> getTags() {
         return tags;
     }
 
-    public BigInteger getNodeId() {
-        return nodeId;
+    public BigInteger getOriginalId() {
+        return originalId;
     }
 
     public Double getLat() {
@@ -102,5 +104,49 @@ public class Node {
 
     public Timestamp getTimestamp() {
         return timestamp;
+    }
+
+    public void setId(BigInteger id) {
+        this.id = id;
+    }
+
+    public void setOriginalId(BigInteger originalId) {
+        this.originalId = originalId;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
+    }
+
+    public void setLat(Double lat) {
+        this.lat = lat;
+    }
+
+    public void setLon(Double lon) {
+        this.lon = lon;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public void setUid(BigInteger uid) {
+        this.uid = uid;
+    }
+
+    public void setVisible(Boolean visible) {
+        this.visible = visible;
+    }
+
+    public void setVersion(BigInteger version) {
+        this.version = version;
+    }
+
+    public void setChangeset(BigInteger changeset) {
+        this.changeset = changeset;
+    }
+
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -49,7 +49,7 @@ public class JdbcNodeDao implements NodeDao {
 
         jdbcOperations.update(con -> {
                 PreparedStatement ps = con.prepareStatement(INSERT_NODE_REQUEST, new String[] {"id"});
-                ps.setObject(1, node.getNodeId(), Types.BIGINT);
+                ps.setObject(1, node.getOriginalId(), Types.BIGINT);
                 ps.setDouble(2, node.getLat());
                 ps.setDouble(3, node.getLon());
                 ps.setString(4, node.getUser());
