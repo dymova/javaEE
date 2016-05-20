@@ -1,5 +1,7 @@
 package ru.nsu.ccfit.dymova.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.math.BigInteger;
 
@@ -16,8 +18,9 @@ public class Tag {
     @Column(name = "tag_v")
     private String v;
 
-    @Column(name = "node_id")
-    private BigInteger nodeId;
+    @ManyToOne()
+    @JsonIgnore
+    private Node node;
 
     public Tag(String k, String v) {
         this.k = k;
@@ -27,8 +30,8 @@ public class Tag {
     public Tag() {
     }
 
-    public BigInteger getNodeId() {
-        return nodeId;
+    public Node getNode() {
+        return node;
     }
 
     public String getK() {
@@ -37,5 +40,9 @@ public class Tag {
 
     public String getV() {
         return v;
+    }
+
+    public void setNode(Node node) {
+        this.node = node;
     }
 }

@@ -6,6 +6,10 @@ import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
+//@NamedNativeQueries({
+//        @NamedNativeQuery(name = "earthDistance",
+//                query = "SELECT earth_distance(ll_to_earth(?1, :?2), ll_to_earth(?3, ?4))")
+//})
 @Table(name = "nodes")
 public class Node {
 
@@ -16,8 +20,7 @@ public class Node {
     @Column(name = "node_id")
     private BigInteger originalId;
 
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(name = "node_id")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "node", fetch = FetchType.EAGER)
     private List<Tag> tags;
 
     @Column(name = "node_lat")
@@ -56,6 +59,8 @@ public class Node {
         this.version = version;
         this.changeset = changeset;
         this.timestamp = timestamp;
+
+        tags.forEach(tag -> tag.setNode(this));
     }
 
     public Node() {

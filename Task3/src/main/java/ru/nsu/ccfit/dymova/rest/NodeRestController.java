@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.nsu.ccfit.dymova.entities.Node;
+import ru.nsu.ccfit.dymova.entities.Tag;
 import ru.nsu.ccfit.dymova.jpa.NodeRepository;
 
 import java.math.BigInteger;
@@ -14,18 +15,18 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/nodes")
+@RequestMapping("/")
 public class NodeRestController {
 
     @Autowired
     private NodeRepository nodeRepository;
 
-    @RequestMapping(value = "/id/{nodeId}", method = RequestMethod.GET)
+    @RequestMapping(value = "entity/node/id/{nodeId}", method = RequestMethod.GET)
     public Node readNodeById(@PathVariable BigInteger nodeId){
         return nodeRepository.findById(nodeId);
     }
 
-    @RequestMapping(value = "/original_id/{nodeId}",method = RequestMethod.GET)
+    @RequestMapping(value = "entity/node/original_id/{nodeId}",method = RequestMethod.GET)
     public List<Node> readNodeByOriginalId(@PathVariable("nodeId") BigInteger nodeId){
         return nodeRepository.findByOriginalId(nodeId);
     }
@@ -35,7 +36,7 @@ public class NodeRestController {
         return nodeRepository.findAll();
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/{nodeId}")
+    @RequestMapping(method = RequestMethod.DELETE, value = "entity/node/{nodeId}")
     public void deleteNode(@PathVariable("nodeId") BigInteger nodeId){
         nodeRepository.delete(nodeId);
     }
@@ -51,7 +52,6 @@ public class NodeRestController {
         return new ResponseEntity<>(null, httpHeaders, HttpStatus.CREATED);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/{nodeId}")
     public ResponseEntity<Object> updateNode(@PathVariable("nodeId") BigInteger nodeId, @RequestBody Node node){
         Node currentNode = nodeRepository.findById(nodeId);
         if(currentNode == null) {
@@ -70,5 +70,14 @@ public class NodeRestController {
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/services/node/nodeInDistance")
+    public List<Node> getNodeInDistance(@RequestParam("lat") Double lat,
+                                       @RequestParam("lot") Double lot,
+                                       @RequestParam("dist") Double dist,
+                                       @RequestParam("key") String key) {
+        return nodeRepository.findNodeInDistance(lat, lot, dist, key);
+
+}
 
 }

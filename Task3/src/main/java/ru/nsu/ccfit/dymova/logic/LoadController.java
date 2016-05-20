@@ -6,9 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.nsu.ccfit.dymova.entities.Node;
-import ru.nsu.ccfit.dymova.jdbc.JdbcNodeDao;
 import ru.nsu.ccfit.dymova.jpa.NodeRepository;
-import ru.nsu.ccfit.dymova.services.NodeDao;
 import ru.nsu.ccfit.dymova.services.NodeReader;
 
 import javax.xml.bind.JAXBException;
@@ -26,9 +24,12 @@ public class LoadController {
     private NodeRepository nodeRepository;
 
     public void loadToDatabase() throws JAXBException, XMLStreamException, IOException {
-        Node node = nodeReader.getNextNode();
-//        nodeRepository.save(node);
-        nodeReader.close();
+        Node node;
+//        Node node =  nodeReader.getNextNode();
+//        while ((node = nodeReader.getNextNode()) != null) {
+//            nodeRepository.save(node);
+//        }
+//        nodeReader.close();
     }
 }
 
